@@ -8,7 +8,8 @@ terraform {
 
 resource "kubernetes_pod" "example" {
   metadata {
-    name = "example"
+    name      = "example"
+    namespace = "flux-system"
   }
   spec {
     container {
