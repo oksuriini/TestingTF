@@ -9,9 +9,10 @@ terraform {
 resource "kubernetes_deployment" "nginx" {
   metadata {
     name      = "nginx-deployment"
-    namespace = "flux-system"
+    namespace = "default"
   }
   spec {
+    replicas = 3
     selector {
       match_labels = {
         app = "nginx"
@@ -36,18 +37,3 @@ resource "kubernetes_deployment" "nginx" {
   }
 }
 
-resource "kubernetes_pod" "example" {
-  metadata {
-    name      = "example"
-    namespace = "flux-system"
-  }
-  spec {
-    container {
-      name  = "example-cont"
-      image = "nginx"
-      port {
-        container_port = 80
-      }
-    }
-  }
-}
